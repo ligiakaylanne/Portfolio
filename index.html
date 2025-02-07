@@ -147,11 +147,11 @@
             </div>
         </section>
 
-        <!--  seção contato  -->
+         seção contato 
         <section class="contact" id="contact">
             <h2 class="heading">Entre em contato <span>comigo!</span></h2>
-
-            <form action="" method="POST">
+        
+            <form id="contact-form">
                 <div class="input-box">
                     <input type="text" name="name" placeholder="Full Name" required>
                     <input type="email" name="email" placeholder="Email Address" required>
@@ -163,9 +163,28 @@
                 <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
                 <input type="submit" value="Send Message" class="btn">
             </form>
-            
         </section>
-
+        
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script>
+            (function() {
+                emailjs.init("Rzu3xYWUR9uHagsCj"); // Substitua pelo seu User ID do EmailJS
+            })();
+        
+            document.getElementById("contact-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+        
+                emailjs.sendForm("service_kedrtoo", "template_16rssvj", this)
+                    .then(function(response) {
+                        alert("Email enviado com sucesso!");
+                        console.log("SUCCESS!", response.status, response.text);
+                    }, function(error) {
+                        alert("Erro ao enviar o email.");
+                        console.log("FAILED...", error);
+                    });
+            });
+        </script>
+        
         <!--  contact section design  -->
         <footer class="footer">
             <div class="footer-text">
@@ -185,5 +204,7 @@
 
         <!--  MAIN JS  -->
         <script src="JS/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     </body>
 </html>

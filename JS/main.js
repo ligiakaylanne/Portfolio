@@ -58,3 +58,24 @@ const typed = new Typed('.multiple-text', {
     backDelay: 1000,
     loop: true,
 });
+document.addEventListener("DOMContentLoaded", function () {
+    var form = document.getElementById("contact-form");
+
+    if (!form) {
+        console.error("O formulário com ID 'contact-form' não foi encontrado!");
+        return;
+    }
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        emailjs.sendForm("service_kedrtoo", "template_16rssvj", this)
+            .then(function (response) {
+                alert("Email enviado com sucesso!");
+                console.log("SUCCESS!", response.status, response.text);
+            }, function (error) {
+                alert("Erro ao enviar o email.");
+                console.log("FAILED...", error);
+            });
+    });
+});
